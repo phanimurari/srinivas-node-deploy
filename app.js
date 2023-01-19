@@ -13,9 +13,6 @@ const dbPath = path.join(__dirname, "srinivas.db");
 const app = express();
 
 
-app.use(bp.json());
-app.use(bp.urlencoded({ extended: true }));
-
 
 app.use(express.json());
 
