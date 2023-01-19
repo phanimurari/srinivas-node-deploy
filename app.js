@@ -33,12 +33,12 @@ app.use(
 
 
 let db = null;
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3004;
 
 const initializeDBAndServer = async () => {
   try {
     db = await open({ filename: dbPath, driver: sqlite3.Database });
-    app.listen(3001, () => {
+    app.listen(port, () => {
       console.log("Server Running at http://localhost:3004/");
     });
   } catch (e) {
