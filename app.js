@@ -117,6 +117,7 @@ app.post("/login/", async (request, response) => {
 app.get("/fruits/", authenticateToken, async (request, response) => {
     const fruitsGetQuery = `
       SELECT * FROM fruits;`;
+  
     const fruits = await db.all(fruitsGetQuery);
     response.send(fruits)
     
