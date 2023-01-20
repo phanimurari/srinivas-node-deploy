@@ -67,22 +67,22 @@ app.post("/users/", cors(), async (request, response) => {
   
   console.log(username, "username")
 
-  const hashedPassword = await bcrypt.hash(request.body.password, 10);
-  const selectUserQuery = `SELECT * FROM user WHERE username = '${username}'`;
-  const dbUser = await db.get(selectUserQuery);
-  if (dbUser === undefined) {
-    const createUserQuery = `
-      INSERT INTO 
-        user (username,  password) 
-      VALUES 
-        (
-          '${username}', 
-          '${hashedPassword}')`;
-    await db.run(createUserQuery);
-    response.status(200).json({ login: true });
-  } else {
-    response.status(400).json({ userAlreadyExist : true})
-  }
+  // const hashedPassword = await bcrypt.hash(request.body.password, 10);
+  // const selectUserQuery = `SELECT * FROM user WHERE username = '${username}'`;
+  // const dbUser = await db.get(selectUserQuery);
+  // if (dbUser === undefined) {
+  //   const createUserQuery = `
+  //     INSERT INTO 
+  //       user (username,  password) 
+  //     VALUES 
+  //       (
+  //         '${username}', 
+  //         '${hashedPassword}')`;
+  //   await db.run(createUserQuery);
+  //   response.status(200).json({ login: true });
+  // } else {
+  //   response.status(400).json({ userAlreadyExist : true})
+  // }
 });
 
 //User Login API
