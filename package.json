@@ -2,9 +2,9 @@
   "name": "sqlite-database",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "server": "nodemon index.js"
   },
   "author": "srinivas dusa",
