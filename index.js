@@ -7,34 +7,20 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 
-
-
 const dbPath = path.join(__dirname, "srinivas.db");
 const app = express();
 
+app.use(cors({
+  origin: '*'
+}));
 
-app.use(bp.json());
-app.use(bp.urlencoded({ extended: true }));
-
+app.use(cors({
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
 
 app.use(express.json());
 
 
-
-const corsOptions ={
-   origin:'*', 
-   credentials:true,            //access-control-allow-credentials:true
-   optionSuccessStatus:200,
-}
-
-app.use(cors(corsOptions)) 
-
-app.use(
-  cors({
-    
-    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
-  })
-);
 
 
 let db = null;
@@ -81,22 +67,22 @@ app.post("/users/", async (request, response) => {
   
   console.log(username, "username")
 
-  // const hashedPassword = await bcrypt.hash(request.body.password, 10);
-  // const selectUserQuery = `SELECT * FROM user WHERE username = '${username}'`;
-  // const dbUser = await db.get(selectUserQuery);
-  // if (dbUser === undefined) {
-  //   const createUserQuery = `
-  //     INSERT INTO 
-  //       user (username,  password) 
-  //     VALUES 
-  //       (
-  //         '${username}', 
-  //         '${hashedPassword}')`;
-  //   await db.run(createUserQuery);
-  //   response.status(200).json({ login: true });
-  // } else {
-  //   response.status(400).json({ userAlreadyExist : true})
-  // }
+  const hashedPassword = await bcrypt.hash(request.body.password, 10);
+  const selectUserQuery = `SELECT * FROM user WHERE username = '${username}'`;
+  const dbUser = await db.get(selectUserQuery);
+  if (dbUser === undefined) {
+    const createUserQuery = `
+      INSERT INTO 
+        user (username,  password) 
+      VALUES 
+        (
+          '${username}', 
+          '${hashedPassword}')`;
+    await db.run(createUserQuery);
+    response.status(200).json({ login: true });
+  } else {
+    response.status(400).json({ userAlreadyExist : true})
+  }
 });
 
 //User Login API
