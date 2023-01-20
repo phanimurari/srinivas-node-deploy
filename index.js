@@ -31,6 +31,7 @@ app.use(cors(corsOptions))
 
 app.use(
   cors({
+    
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
