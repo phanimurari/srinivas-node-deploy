@@ -62,7 +62,7 @@ const authenticateToken = (request, response, next) => {
 
 	
 //User Register API
-app.post("/users/", async (request, response) => {
+app.post("/users/", cors(), async (request, response) => {
   const { username, password } = request.body
   
   console.log(username, "username")
@@ -86,7 +86,7 @@ app.post("/users/", async (request, response) => {
 });
 
 //User Login API
-app.post("/login/", async (request, response) => {
+app.post("/login/", cors(), async (request, response) => {
   const { username, password } = request.body;
   const selectUserQuery = `SELECT * FROM user WHERE username = '${username}'`;
   const dbUser = await db.get(selectUserQuery);
@@ -107,7 +107,7 @@ app.post("/login/", async (request, response) => {
 });
 
 
-app.get("/fruits/", authenticateToken, async (request, response) => {
+app.get("/fruits/", cors(), authenticateToken, async (request, response) => {
     const fruitsGetQuery = `
       SELECT * FROM fruits;`;
   
@@ -120,7 +120,7 @@ app.get("/fruits/", authenticateToken, async (request, response) => {
 
 
   
-  app.get("/fruits/:fruitId/", authenticateToken, async (request, response) => {
+  app.get("/fruits/:fruitId/", cors(), authenticateToken, async (request, response) => {
     const { fruitId } = request.params;
     const getFruitQuery = `
       SELECT 
@@ -134,7 +134,7 @@ app.get("/fruits/", authenticateToken, async (request, response) => {
   });
 
   
-  app.post("/fruits/", authenticateToken, async (request, response) => {
+  app.post("/fruits/", cors(), authenticateToken, async (request, response) => {
     const { fruitName } = request.body;
     const postFruitQuery = `
     INSERT INTO
