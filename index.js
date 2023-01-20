@@ -24,6 +24,10 @@ app.use((req, res, next) => {
 }) 
 
 
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
+
+
 let db = null;
 const port = process.env.PORT || 3004;
 
