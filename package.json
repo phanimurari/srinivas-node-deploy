@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node app.js",
-    "server": "nodemon app.js"
+    "start": "nodemon index.js",
+    "server": "nodemon index.js"
   },
   "author": "srinivas dusa",
   "license": "ISC",
