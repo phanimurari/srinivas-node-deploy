@@ -11,7 +11,7 @@ const dbPath = path.join(__dirname, "srinivas.db");
 const app = express();
 
 app.use(cors({
-  origin: '*'
+  origin: 'http://localhost:3000'
 }));
 
 app.use(cors({
