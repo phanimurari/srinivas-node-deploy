@@ -10,9 +10,7 @@ const cors = require("cors");
 const dbPath = path.join(__dirname, "srinivas.db");
 const app = express();
 
-app.use(cors({
-  origin: 'http://localhost:3000'
-}));
+app.use(cors());
 
 app.use(cors({
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
