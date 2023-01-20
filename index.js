@@ -10,22 +10,25 @@ const cors = require("cors");
 const dbPath = path.join(__dirname, "srinivas.db");
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-app.use(cors({
-    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-}));
-
-app.use(express.json());
-
-app.use((req, res, next) => {
-  res.header({"Access-Control-Allow-Origin": "*"});
-  next();
-}) 
-
+app.use(
+  cors({
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+  })
+);
 
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
+
+
+
+app.use(express.json());
+
 
 
 let db = null;
