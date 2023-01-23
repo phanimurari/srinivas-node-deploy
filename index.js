@@ -13,6 +13,7 @@ const app = express();
 app.use(express.json());
 
 app.use(
+
   cors({
     origin: "*",
   })
@@ -70,7 +71,7 @@ const authenticateToken = (request, response, next) => {
 app.post("/users/", cors(), async (request, response) => {
   const { username, password } = request.body
   
-  console.log(request.body, "request body")
+  console.log(request.body, "requestbody")
 
   // const hashedPassword = await bcrypt.hash(request.body.password, 10);
   // const selectUserQuery = `SELECT * FROM user WHERE username = '${username}'`;
