@@ -24,7 +24,7 @@ app.use(
 
 
 app.use(express.json());
-app.use(bodyParser.urlencoded())
+app.use(express.urlencoded());
 
 
 let db = null;
