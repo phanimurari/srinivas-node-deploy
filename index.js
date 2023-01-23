@@ -5,10 +5,12 @@ const sqlite3 = require("sqlite3");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-const bodyParser = require("body-parser");
+const bp = require("body-parser");
 
 const dbPath = path.join(__dirname, "srinivas.db");
 const app = express();
+
+app.use(express.json());
 
 app.use(
   cors({
@@ -22,9 +24,8 @@ app.use(
   })
 );
 
-
-app.use(express.json());
-app.use(express.urlencoded());
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 
 
 let db = null;
